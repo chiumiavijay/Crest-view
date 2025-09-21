@@ -1,0 +1,97 @@
+.guesthouse-page {
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.guesthouse-header {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.guesthouse-subheader {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #555;
+  font-size: 1.2rem;
+}
+
+.rooms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.room-card {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.room-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.room-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.room-name {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.room-description {
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.price-booking {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.room-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffc107;
+}
+
+.book-button {
+  padding: 10px 20px;
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .room-card {
+    flex-direction: column; /* Stacks the image and content on top of each other */
+  }
+
+  .room-image {
+    width: 100%; /* Makes the image full-width */
+    height: 250px; /* Adjusts height for better mobile display */
+  }
+
+  .room-content {
+    padding: 15px;
+  }
+}

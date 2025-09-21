@@ -1,0 +1,89 @@
+/* --- Desktop Table Styles --- */
+.room-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.room-table th {
+  padding: 12px;
+  border-bottom: 2px solid #ffc107;
+  text-align: left;
+}
+
+.room-table td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.room-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.action-button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
+
+.button-edit {
+  background-color: #4caf50;
+}
+
+.button-delete {
+  background-color: #f44336;
+}
+
+.no-rooms-message {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* --- Mobile Card Styles (Hidden by default) --- */
+.room-card {
+  display: none;
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+}
+
+.card-item:last-child {
+  border-bottom: none;
+}
+
+.card-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.card-actions {
+  display: flex;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+  .room-table {
+    display: none; /* Hide the table on smaller screens */
+  }
+
+  .room-card {
+    display: block; /* Show the card view on smaller screens */
+  }
+}

@@ -1,0 +1,77 @@
+.add-product-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+}
+
+.form-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-product-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #fff;
+}
+
+.form-textarea {
+  resize: vertical;
+}
+
+.form-file-input {
+  width: 100%;
+  padding: 10px;
+}
+
+.submit-button {
+  padding: 12px 20px;
+  background-color: #ffc107;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.message {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Specific message colors */
+.message.success {
+  color: #ffc107;
+}
+
+.message.error {
+  color: #ff4d4d;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+  .add-product-container {
+    margin: 0 15px; /* Add some space on the sides for smaller screens */
+  }
+}

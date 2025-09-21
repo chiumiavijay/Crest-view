@@ -1,0 +1,99 @@
+.admin-reservations-container {
+  padding: 20px;
+}
+
+.reservations-header {
+  margin-bottom: 20px;
+}
+
+/* --- Table Styles (Desktop View) --- */
+.reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.reservations-table th {
+  padding: 12px;
+  border-bottom: 2px solid #ffc107;
+  text-align: left;
+}
+
+.reservations-table td {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+
+.status-text {
+  font-weight: bold;
+}
+
+.status-confirmed {
+  color: #4caf50;
+}
+
+.status-pending {
+  color: #ffc107;
+}
+
+.status-cancelled {
+  color: #f44336;
+}
+
+.action-button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.button-confirm {
+  background-color: #4caf50;
+}
+
+.button-cancel {
+  background-color: #f44336;
+}
+
+/* --- Mobile Card Styles --- */
+.reservation-card {
+  display: none; /* Hidden by default on desktop */
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-item:last-child {
+  border-bottom: none;
+}
+
+.card-label {
+  font-weight: bold;
+  color: #aaa;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 768px) {
+  .reservations-table {
+    display: none; /* Hide table on mobile */
+  }
+
+  .reservation-card {
+    display: block; /* Show card view on mobile */
+  }
+
+  .reservations-header {
+    text-align: center;
+  }
+}

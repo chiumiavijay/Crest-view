@@ -1,0 +1,60 @@
+.home-hero {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.home-title {
+  font-size: 5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.home-slogan {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+.home-button {
+  padding: 15px 30px;
+  margin: 0 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffc107;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 2.5rem; /* Smaller font for phones */
+  }
+
+  .home-slogan {
+    font-size: 1.2rem;
+  }
+
+  .home-button {
+    font-size: 0.9rem;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+  }
+}
