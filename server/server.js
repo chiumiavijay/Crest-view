@@ -10,7 +10,7 @@ require('dotenv').config();
 const connectDB = require('./config/db');
 const webpush = require('web-push');
 
-// Import Mongoose Models for real-time updates and API routes
+// Import Mongoose Models
 const Booking = require('./models/Booking');
 const User = require('./models/User');
 const MenuItem = require('./models/MenuItem');
@@ -24,18 +24,18 @@ const server = http.createServer(app);
 // Socket.io Setup
 // =======================
 const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-  },
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
 });
 
 io.on("connection", (socket) => {
-  console.log("✅ New client connected via Socket.io");
+  console.log("✅ New client connected via Socket.io");
 
-  socket.on("disconnect", () => {
-    console.log("❌ Client disconnected from Socket.io");
-  });
+  socket.on("disconnect", () => {
+    console.log("❌ Client disconnected from Socket.io");
+  });
 });
 
 // =======================
@@ -48,109 +48,101 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // =======================
-// Push Notification Setup (New)
+// Push Notification Setup
 // =======================
 webpush.setVapidDetails(
-  'mailto:grangertryness@gmail.com',
-  process.env.VAPID_PUBLIC_KEY,
-  process.env.VAPID_PRIVATE_KEY
+  'mailto:grangertryness@gmail.com',
+  process.env.VAPID_PUBLIC_KEY,
+  process.env.VAPID_PRIVATE_KEY
 );
 
 // =======================
 // Database Connection
 // =======================
-connectDB()
-  .then(() => {
-    console.log('✅ MongoDB connected successfully');
-    createDefaultAdmin();
-  })
-  .catch((err) => {
-    console.error('❌ MongoDB connection failed:', err);
-    process.exit(1);
-  });
-
-// =======================
-// Default Admin Creation
-// =======================
 const createDefaultAdmin = async () => {
-  try {
-    const existingAdmin = await User.findOne({ email: 'grangertryness@gmail.com', role: 'admin' });
-    if (!existingAdmin) {
-      const admin = new User({
-        email: 'grangertryness@gmail.com',
-        password: 'chiumiatryness',
-        role: 'admin',
-      });
-      await admin.save();
-      console.log('✅ Default admin created: grangertryness@gmail.com / chiumiatryness');
-    } else {
-      console.log('ℹ️ Default admin already exists');
-    }
-  } catch (err) {
-    console.error('❌ Error creating default admin:', err.message);
-  }
+  try {
+    const existingAdmin = await User.findOne({ email: 'grangertryness@gmail.com', role: 'admin' });
+    if (!existingAdmin) {
+      const admin = new User({
+        email: 'grangertryness@gmail.com',
+        password: 'chiumiatryness',
+        role: 'admin',
+      });
+      await admin.save();
+      console.log('✅ Default admin created: grangertryness@gmail.com / chiumiatryness');
+    } else {
+      console.log('ℹ️ Default admin already exists');
+    }
+  } catch (err) {
+    console.error('❌ Error creating default admin:', err.message);
+  }
 };
+
+connectDB()
+  .then(() => {
+    console.log('✅ MongoDB connected successfully');
+    createDefaultAdmin();
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB connection failed:', err);
+    process.exit(1);
+  });
 
 // =======================
 // API Routes
 // =======================
-// Import the public rooms router
 const roomsRouter = require('./routes/rooms');
 
-// Customer-facing routes
 app.use('/api/menu', require('./routes/menu'));
 app.use('/api/bookings', require('./routes/bookings'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/rooms', roomsRouter); // <-- Add this line to resolve the 404 error
-
-// New: Admin routes
+app.use('/api/rooms', roomsRouter);
 app.use('/api/admin', require('./routes/admin'));
 
-// New: Endpoint to save a user's push notification subscription
+// Endpoint to save push notification subscription
 app.post('/subscribe', async (req, res) => {
-  try {
-    const newSubscription = new NotificationSubscription(req.body);
-    await newSubscription.save();
-    res.status(201).json({ message: 'Subscription saved.' });
-  } catch (error) {
-    res.status(500).json({ message: 'Failed to save subscription.' });
-  }
+  try {
+    const newSubscription = new NotificationSubscription(req.body);
+    await newSubscription.save();
+    res.status(201).json({ message: 'Subscription saved.' });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to save subscription.' });
+  }
 });
 
 // =======================
-// Real-time Updates with Socket.io & Push Notifications
+// Real-time Updates
 // =======================
 Booking.watch().on("change", async (change) => {
-  if (change.operationType === "insert") {
-    const newBooking = change.fullDocument;
-    io.emit("newBooking", newBooking); // Socket.io notification
+  if (change.operationType === "insert") {
+    const newBooking = change.fullDocument;
+    io.emit("newBooking", newBooking); // Socket.io notification
 
-    // Push notification logic
-    const subscriptions = await NotificationSubscription.find({});
-    const payload = JSON.stringify({
-      title: 'New Reservation!',
-      body: `A new reservation has been made by ${newBooking.name}.`
-    });
+    // Push notification
+    const subscriptions = await NotificationSubscription.find({});
+    const payload = JSON.stringify({
+      title: 'New Reservation!',
+      body: `A new reservation has been made by ${newBooking.name}.`
+    });
 
-    subscriptions.forEach(sub => {
-      webpush.sendNotification(sub, payload)
-        .catch(error => console.error('Push notification failed:', error));
-    });
-  }
+    subscriptions.forEach(sub => {
+      webpush.sendNotification(sub, payload)
+        .catch(error => console.error('Push notification failed:', error));
+    });
+  }
 });
 
 // =======================
 // Serve React Frontend
 // =======================
 if (process.env.NODE_ENV === 'production') {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, 'client', 'build')));
+  app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-  // Send index.html for all other requests, which resolves the PathError
-  app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-  });
+  // ✅ Fixed catch-all route
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
 }
 
 // =======================
