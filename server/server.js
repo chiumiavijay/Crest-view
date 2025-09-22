@@ -147,8 +147,10 @@ if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-  // Send index.html for all other requests
-  app.get('*', (req, res) => {
+  // Send index.html for all other requests, fixing the PathError
+  // The original route 'app.get('*', ...)' caused an error with the path-to-regexp library.
+  // Using a named parameter like '/:path*' is the correct way to create a catch-all route.
+  app.get('/:path*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 }
