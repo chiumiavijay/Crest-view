@@ -134,13 +134,13 @@ Booking.watch().on("change", async (change) => {
 });
 
 // =======================
-// Serve React Frontend
+// Serve React Frontend (Express 5 safe syntax)
 // =======================
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-  // ✅ Fixed catch-all route
-  app.get('*', (req, res) => {
+  // ✅ Express 5 requires a named wildcard param
+  app.get('/:path(*)', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
 }
