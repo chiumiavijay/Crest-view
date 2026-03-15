@@ -1,60 +1,38 @@
-.home-hero {
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-}
 
-.home-title {
-  font-size: 5rem;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
+import React from "react";
+import { Link } from "react-router-dom";
 
-.home-slogan {
-  font-size: 1.5rem;
-  margin-bottom: 40px;
-}
+export default function HomeHero() {
+  return (
+    <section
+      className="h-screen bg-cover bg-center flex flex-col justify-center items-center text-center text-white"
+      style={{ backgroundImage: "url('/images/hero-bg.jpg')" }} // replace with your image
+    >
+      {/* Title */}
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4 drop-shadow-lg">
+        Welcome to Sweet Crestview
+      </h1>
 
-.home-button {
-  padding: 15px 30px;
-  margin: 0 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-  background-color: #ffc107;
-  color: #333;
-  font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+      {/* Slogan */}
+      <p className="text-xl md:text-2xl lg:text-3xl mb-10 drop-shadow-md">
+        Experience Comfort & Delicious Cuisine
+      </p>
 
-/* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
-  .home-title {
-    font-size: 2.5rem; /* Smaller font for phones */
-  }
-
-  .home-slogan {
-    font-size: 1.2rem;
-  }
-
-  .home-button {
-    font-size: 0.9rem;
-    padding: 12px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .home-button {
-    display: block;
-    width: 80%;
-    margin: 10px auto;
-  }
+      {/* Buttons */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <Link
+          to="/reservations"
+          className="px-6 py-3 text-base sm:text-lg font-bold rounded bg-yellow-400 text-gray-800 shadow-lg hover:bg-yellow-500 transition-colors"
+        >
+          Book a Room
+        </Link>
+        <Link
+          to="/menu"
+          className="px-6 py-3 text-base sm:text-lg font-bold rounded bg-yellow-400 text-gray-800 shadow-lg hover:bg-yellow-500 transition-colors"
+        >
+          View Menu
+        </Link>
+      </div>
+    </section>
+  );
 }
