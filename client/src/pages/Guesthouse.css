@@ -1,30 +1,47 @@
+// Guesthouse.jsx
+import React from "react";
 
-/* Page Container */
-.guesthouse-page → px-5 py-12 bg-gray-100 min-h-screen
+const Guesthouse = () => {
+  return (
+    <div className="px-5 py-12 bg-gray-100 min-h-screen">
+      {/* Headers */}
+      <h1 className="text-center mb-2 text-4xl font-bold">Guesthouse</h1>
+      <h2 className="text-center mb-8 text-gray-600 text-lg">Find your perfect room</h2>
 
-/* Headers */
-.guesthouse-header → text-center mb-2 text-4xl font-bold
-.guesthouse-subheader → text-center mb-8 text-gray-600 text-lg
+      {/* Rooms Container */}
+      <div className="flex flex-col gap-7 max-w-[900px] mx-auto">
+        {/* Room Card */}
+        <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-md overflow-hidden">
+          {/* Room Image */}
+          <img
+            src="/path/to/room1.jpg"
+            alt="Room 1"
+            className="w-full md:w-[300px] h-[200px] md:h-[200px] object-cover"
+          />
 
-/* Rooms Container */
-.rooms-container → flex flex-col gap-7 max-w-[900px] mx-auto
+          {/* Room Content */}
+          <div className="p-5 flex flex-col justify-between flex-1">
+            <div>
+              <h3 className="mb-2 text-2xl font-semibold">Deluxe Room</h3>
+              <p className="text-gray-500 mb-4">
+                A cozy room with all amenities included.
+              </p>
+            </div>
 
-/* Room Card */
-.room-card → flex flex-col md:flex-row bg-white rounded-lg shadow-md overflow-hidden
+            {/* Price & Booking */}
+            <div className="flex justify-between items-center">
+              <span className="text-yellow-400 text-lg font-bold">$120/night</span>
+              <button className="px-5 py-2 bg-yellow-400 text-gray-800 rounded font-bold cursor-pointer">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
 
-/* Room Image */
-.room-image → w-full md:w-[300px] h-[200px] md:h-[200px] object-cover
+        {/* Repeat Room Cards as needed */}
+      </div>
+    </div>
+  );
+};
 
-/* Room Content */
-.room-content → p-5 flex flex-col justify-between flex-1
-
-/* Room Name & Description */
-.room-name → mb-2 text-2xl font-semibold
-.room-description → text-gray-500 mb-4
-
-/* Price & Booking */
-.price-booking → flex justify-between items-center
-.room-price → text-yellow-400 text-lg font-bold
-.book-button → px-5 py-2 bg-yellow-400 text-gray-800 rounded font-bold cursor-pointer
-
-/* Responsive Adjustments handled with Tailwind classes */
+export default Guesthouse;
