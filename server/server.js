@@ -47,6 +47,19 @@ if (process.env.NODE_ENV === "production") {
 }
 */
 
+const Room = require("./models/Room");
+
+// GET all rooms
+app.get("/api/rooms", async (req, res) => {
+  try {
+    const rooms = await Room.find(); // fetch all rooms from MongoDB
+    res.json(rooms);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to fetch rooms" });
+  }
+});
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 
