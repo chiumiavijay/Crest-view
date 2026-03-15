@@ -3,7 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: keep old CSS for reference */
+/* ----------------------------
+   Body Styling
+-----------------------------*/
+/* Old CSS reference:
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,32 +14,52 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* Prevent horizontal scrolling on phones */
   overflow-x: hidden;
 }
+*/
+/* Tailwind equivalent: add these classes to <body> or root div:
+   class="m-0 font-sans antialiased overflow-x-hidden"
+*/
 
-/* Code font */
+/* ----------------------------
+   Code Font
+-----------------------------*/
+/* Old CSS reference:
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+*/
+/* Tailwind equivalent: add class="font-mono" to <code> elements */
 
-/* Make images responsive */
+/* ----------------------------
+   Images
+-----------------------------*/
+/* Old CSS reference:
 img {
   max-width: 100%;
   height: auto;
 }
+*/
+/* Tailwind equivalent: add class="max-w-full h-auto" to <img> elements */
 
-/* General container for pages */
+/* ----------------------------
+   General Container
+-----------------------------*/
+/* Old CSS reference:
 .container {
   width: 100%;
   max-width: 1200px;
   margin: auto;
   padding: 15px;
 }
+*/
+/* Tailwind equivalent: add class="w-full max-w-[1200px] mx-auto px-4" to container divs */
 
-/* Responsive adjustments for phones */
+/* ----------------------------
+   Responsive Adjustments
+-----------------------------*/
+/* Old CSS reference:
 @media (max-width: 768px) {
 
   body {
@@ -56,3 +79,10 @@ img {
   }
 
 }
+*/
+/* Tailwind equivalent using responsive classes:
+   <body class="text-base sm:text-sm">  <-- font size 16px default, 14px on small
+   <h1 class="text-4xl sm:text-2xl">    <-- 24px for small screens
+   <h2 class="text-3xl sm:text-xl">    <-- 20px for small screens
+   <div class="px-4 sm:px-2">           <-- container padding adjustment
+*/
