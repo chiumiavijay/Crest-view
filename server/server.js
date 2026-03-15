@@ -6,12 +6,14 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
-// Load env vars
+// Load environment variables from .env
 dotenv.config();
 
 const app = express();
 
+// =======================
 // Middleware
+// =======================
 app.use(express.json());
 app.use(cors());
 
@@ -41,20 +43,19 @@ app.get("/api/test", (req, res) => {
   res.json({ message: "API is working!" });
 });
 
-// Import other routes if you have them
+// You can import more routes here
 // const userRoutes = require("./routes/userRoutes");
 // app.use("/api/users", userRoutes);
 
 // =======================
-// Serve React Frontend (commented out for now)
+// Serve React Frontend (optional)
 // =======================
 // Uncomment this block when your client/build exists
 /*
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));
 
-  // Middleware fallback for React Router
-  app.use((req, res) => {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
@@ -64,4 +65,7 @@ if (process.env.NODE_ENV === "production") {
 // Start Server
 // =======================
 const PORT = process.env.PORT || 5000;
-app.
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
