@@ -20,20 +20,21 @@ import ListRooms from "./admin/pages/ListRooms";
 import AdminReservations from "./admin/pages/Reservations";
 import Login from "./admin/pages/Login";
 import EditProduct from "./admin/pages/EditProduct";
-import EditRoom from "./admin/pages/EditRoom"; // <-- Add this import
+import EditRoom from "./admin/pages/EditRoom"; // <-- kept import
 
 // Auth-related components
 import { AuthProvider } from "./admin/AuthContext";
 import ProtectedRoute from "./admin/ProtectedRoute";
 
 // Replace with your actual public key
-const publicVapidKey = "BMRP0hFM6K1TRHIpNV7UcrR2pvz7ina0jFPH1hxK-px7OVyophr49_CV_I7tCgTgja0rR5YJam7Bm73wK2vUrJw";
+const publicVapidKey =
+  "BMRP0hFM6K1TRHIpNV7UcrR2pvz7ina0jFPH1hxK-px7OVyophr49_CV_I7tCgTgja0rR5YJam7Bm73wK2vUrJw";
 
 // Helper function to convert VAPID key
 function urlBase64ToUint8Array(base64String) {
-  const padding = "=".repeat((4 - base64String.length % 4) % 4);
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding)
-    .replace(/\-/g, "+")
+    .replace(/-/g, "+") // fixed eslint warning
     .replace(/_/g, "/");
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
@@ -43,41 +44,38 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
-// Function to register the service worker and subscribe to push
-async function subscribeUser() {
-  if ("serviceWorker" in navigator) {
-    try {
-      const register = await navigator.serviceWorker.register("/service-worker.js", {
-        scope: "/",
-      });
-      console.log("Service Worker registered successfully.", register);
+// Function to register service worker (commented out to fix ESLint unused warning)
+// async function subscribeUser() {
+//   if ("serviceWorker" in navigator) {
+//     try {
+//       const register = await navigator.serviceWorker.register("/service-worker.js", {
+//         scope: "/",
+//       });
+//       console.log("Service Worker registered successfully.", register);
 
-      const subscription = await register.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
-      });
-      console.log("Push subscription received.", subscription);
+//       const subscription = await register.pushManager.subscribe({
+//         userVisibleOnly: true,
+//         applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
+//       });
+//       console.log("Push subscription received.", subscription);
 
-      // Send the subscription to your backend
-      await fetch("/subscribe", {
-        method: "POST",
-        body: JSON.stringify(subscription),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log("Subscription sent to backend.");
-    } catch (error) {
-      console.error("Service Worker registration failed:", error);
-    }
-  } else {
-    console.warn("Push notifications are not supported by your browser.");
-  }
-}
+//       await fetch("/subscribe", {
+//         method: "POST",
+//         body: JSON.stringify(subscription),
+//         headers: { "Content-Type": "application/json" },
+//       });
+//       console.log("Subscription sent to backend.");
+//     } catch (error) {
+//       console.error("Service Worker registration failed:", error);
+//     }
+//   } else {
+//     console.warn("Push notifications are not supported by your browser.");
+//   }
+// }
 
 function App() {
   useEffect(() => {
-    // subscribeUser();
+    // subscribeUser(); // kept commented to avoid ESLint unused warning
   }, []);
 
   return (
@@ -106,7 +104,7 @@ function App() {
               <Route path="list-rooms" element={<ListRooms />} />
               <Route path="reservations" element={<AdminReservations />} />
               <Route path="edit-product/:id" element={<EditProduct />} />
-              <Route path="edit-room/:id" element={<EditRoom />} /> {/* <-- Add this route */}
+              <Route path="edit-room/:id" element={<EditRoom />} />
             </Route>
           </Route>
         </Routes>
