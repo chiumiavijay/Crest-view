@@ -1,78 +1,18 @@
-.reservation-container {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 30px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-}
+/* Container */
+.reservation-container → max-w-[700px] mx-auto my-12 p-8 border border-gray-300 rounded-lg shadow-md font-sans
+/* Title & Subtitle */
+.reservation-title → text-yellow-400 mb-1
+.reservation-subtitle → mb-8
+.reservation-subtitle span → text-yellow-400
 
-.reservation-title {
-  color: #ffc107;
-  margin-bottom: 5px;
-}
+/* Form */
+.reservation-form → grid gap-5
+.form-row → grid grid-cols-1 md:grid-cols-2 gap-5
+.form-group → flex flex-col
+.form-label → font-bold mb-1
+.form-input, .form-select → p-3 rounded border border-gray-300 w-full
 
-.reservation-subtitle {
-  margin-bottom: 30px;
-}
+/* Submit Button */
+.submit-button → px-6 py-3 bg-yellow-400 text-gray-800 text-base font-bold rounded cursor-pointer
 
-.reservation-subtitle span {
-  color: #ffc107;
-}
-
-.reservation-form {
-  display: grid;
-  gap: 20px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.form-input, .form-select {
-  padding: 12px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 100%;
-}
-
-.submit-button {
-  padding: 15px;
-  background-color: #ffc107;
-  color: #333;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
-  .reservation-container {
-    margin: 20px;
-    padding: 20px;
-  }
-  .form-row {
-    grid-template-columns: 1fr; /* Stack columns on top of each other */
-  }
-  .reservation-title {
-    font-size: 1rem;
-  }
-  .reservation-subtitle {
-    font-size: 1.5rem;
-  }
-}
+/* Responsive handled via Tailwind */
