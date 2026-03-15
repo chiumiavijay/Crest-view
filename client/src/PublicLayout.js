@@ -5,13 +5,13 @@ import Footer from "./components/Footer";
 
 const PublicLayout = () => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      
+    <div className="flex flex-col min-h-screen">
+
       {/* Navbar */}
       <Navbar />
 
       {/* Page Content */}
-      <main style={{ flex: 1, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: "10px" }}>
+      <main className="flex-1 w-full max-w-[1200px] mx-auto px-3">
         <Outlet />
       </main>
 
