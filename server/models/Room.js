@@ -1,26 +1,11 @@
-const mongoose = require('mongoose');
 
-const roomSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  isAvailable: {
-    type: Boolean,
-    default: true,
-  }
+const mongoose = require("mongoose");
+
+const RoomSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  description: { type: String },
+  price: { type: Number, required: true },
+  image: { type: String }, // store path like 'images/room1.jpg'
 });
 
-module.exports = mongoose.model('Room', roomSchema);
+module.exports = mongoose.model("Room", RoomSchema);
