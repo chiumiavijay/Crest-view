@@ -34,7 +34,8 @@
   @apply p-5 flex flex-col justify-between flex-1;
 }
 
-.room-title {
+/* Room Name & Description */
+.room-name {
   @apply mb-2 text-2xl font-semibold;
 }
 
@@ -43,7 +44,7 @@
 }
 
 /* Price & Booking */
-.room-footer {
+.price-booking {
   @apply flex justify-between items-center;
 }
 
@@ -53,4 +54,13 @@
 
 .book-button {
   @apply px-5 py-2 bg-yellow-400 text-gray-800 rounded font-bold cursor-pointer;
+}
+
+/* Loading / Error / No Rooms Messages */
+.error-text {
+  @apply text-red-500 text-center mt-4;
+}
+
+.no-rooms-message {
+  @apply text-center text-gray-600 mt-4;
 }
