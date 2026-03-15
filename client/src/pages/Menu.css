@@ -1,129 +1,29 @@
-.menu-container {
-  padding: 50px 20px;
-  background-color: #f9f9f9;
-}
 
-.menu-header {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
+/* Container */
+.menu-container → px-5 py-12 bg-gray-100
 
-.menu-subheader {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #555;
-  font-size: 1.2rem;
-}
+/* Headers */
+.menu-header → text-center mb-2 text-4xl font-bold
+.menu-subheader → text-center mb-8 text-gray-600 text-lg
 
-.category-buttons {
-  text-align: center;
-  margin-bottom: 50px;
-}
+/* Category Buttons */
+.category-buttons → text-center mb-12 space-x-2 space-y-2 sm:space-y-0
+.category-button.active → px-6 py-3 rounded-full font-bold transition-colors duration-300 bg-yellow-400 text-white
+.category-button.inactive → px-6 py-3 rounded-full font-bold transition-colors duration-300 bg-gray-200 text-gray-800
+.reserve-button → px-6 py-3 rounded-full font-bold transition-colors duration-300 border-2 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-white
 
-.category-button, .reserve-button {
-  margin: 0 5px 10px; /* Add margin-bottom for better spacing on mobile */
-  padding: 12px 25px;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s, color 0.3s;
-}
+/* Menu Items Grid */
+.menu-items-grid → grid gap-5 max-w-[1100px] mx-auto grid-cols-1 md:grid-cols-2
 
-.category-button.active {
-  background-color: #ffc107;
-  color: #fff;
-}
+/* Menu Item */
+.menu-item → flex flex-col md:flex-row items-center bg-white rounded-lg p-4 shadow-md relative text-center md:text-left
+.menu-item-image → w-24 h-24 object-cover rounded-full mb-2 md:mb-0 md:mr-5
+.menu-item-content → flex-1
+.menu-item-content h3 → mb-1 text-lg font-semibold
+.menu-item-content p → text-gray-500 text-sm
 
-.category-button.inactive {
-  background-color: #eee;
-  color: #333;
-}
+/* Menu Item Price */
+.menu-item-price → absolute top-2 right-2 text-yellow-400 font-bold flex items-center
+.price-line → flex-grow border-b border-dotted border-gray-300 mr-2
 
-.reserve-button {
-  background-color: transparent;
-  color: #ffc107;
-  border: 2px solid #ffc107;
-}
-
-.menu-items-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.menu-item-image {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-right: 20px;
-}
-
-.menu-item-content {
-  flex-grow: 1;
-}
-
-.menu-item-content h3 {
-  margin-bottom: 5px;
-}
-
-.menu-item-content p {
-  color: #777;
-  font-size: 0.9rem;
-}
-
-.menu-item-price {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  color: #ffc107;
-  font-weight: bold;
-  flex-grow: 1;
-}
-
-.price-line {
-  height: 1px;
-  border-bottom: 1px dotted #ccc;
-  flex-grow: 1;
-  margin-right: 10px;
-}
-
-/* Media Queries for Mobile Devices */
-@media (max-width: 768px) {
-  .menu-items-grid {
-    grid-template-columns: 1fr; /* Stack items on small screens */
-  }
-
-  .menu-item {
-    flex-direction: column; /* Stack image and text */
-    text-align: center;
-    padding-top: 50px; /* Make space for price tag */
-  }
-
-  .menu-item-image {
-    margin-right: 0;
-    margin-bottom: 10px;
-  }
-
-  .menu-item-price {
-    top: 10px;
-    right: 10px;
-  }
-}
+/* Mobile Adjustments handled via Tailwind responsive classes */
